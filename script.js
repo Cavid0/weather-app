@@ -1,8 +1,7 @@
-// script.js - separated from weather.html
-const API_KEY = '2f723f6ac1a44997b17195306251405'; // WeatherAPI açarı
+
+const API_KEY = '2f723f6ac1a44997b17195306251405'; 
 const weatherContainer = document.getElementById('weatherContainer');
 
-// Weather icon mapping
 const weatherIcons = {
     '01d': '☀️', '01n': '🌙',
     '02d': '⛅', '02n': '☁️',
@@ -88,7 +87,6 @@ function getCurrentLocation() {
                         break;
                 }
                 showError(errorMsg);
-                // Fallback to London weather
                 setTimeout(() => {
                     getWeatherByCity('London');
                 }, 2000);
@@ -96,12 +94,12 @@ function getCurrentLocation() {
             {
                 enableHighAccuracy: true,
                 timeout: 10000,
-                maximumAge: 300000 // 5 minutes
+                maximumAge: 300000 
             }
         );
     } else {
         showError('Browser does not support location services');
-        // Fallback to London weather
+   
         setTimeout(() => {
             getWeatherByCity('London');
         }, 2000);
@@ -118,8 +116,7 @@ function displayRealWeather(data) {
     const feelsLike = Math.round(current.feelslike_c);
     const maxTemp = Math.round(today.day.maxtemp_c);
     const minTemp = Math.round(today.day.mintemp_c);
-    
-    // Get local time for the location
+
     const localTime = new Date(location.localtime);
     const timeOptions = { 
         hour: '2-digit', 
@@ -229,9 +226,6 @@ function getUVLevel(uv) {
     return '(Extreme)';
 }
 
-// Remove all demo/sample functions - only use real API data
-
-// Remove sample forecast function - only use real API data
 
 function searchWeather() {
     const city = document.getElementById('cityInput').value.trim();
@@ -259,7 +253,6 @@ function getCurrentLocation() {
     }
 }
 
-// Enter key support
 function showSampleWeather(title = 'Welcome') {
     weatherContainer.innerHTML = `<div class="loading">Welcome! Enter a city name or click the location button to see weather information.</div>`;
 }
@@ -270,7 +263,6 @@ document.getElementById('cityInput').addEventListener('keypress', function(e) {
     }
 });
 
-// Show sample data on load
 window.addEventListener('load', () => {
     showSampleWeather();
 });
