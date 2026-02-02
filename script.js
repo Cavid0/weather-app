@@ -1,25 +1,6 @@
-<<<<<<< HEAD
-const API_KEY = '2f723f6ac1a44997b17195306251405'; 
+// API_KEY is loaded from config.js
 const weatherContainer = document.getElementById('weatherContainer');
 
-=======
-
-const API_KEY = '2f723f6ac1a44997b17195306251405'; 
-const weatherContainer = document.getElementById('weatherContainer');
-
-const weatherIcons = {
-    '01d': '☀️', '01n': '🌙',
-    '02d': '⛅', '02n': '☁️',
-    '03d': '☁️', '03n': '☁️',
-    '04d': '☁️', '04n': '☁️',
-    '09d': '🌧️', '09n': '🌧️',
-    '10d': '🌦️', '10n': '🌦️',
-    '11d': '⛈️', '11n': '⛈️',
-    '13d': '🌨️', '13n': '🌨️',
-    '50d': '🌫️', '50n': '🌫️'
-};
-
->>>>>>> 7bafc08e93935bc394d8460e4b945e4dcd2407c2
 function showLoading() {
     weatherContainer.innerHTML = '<div class="loading">Loading weather data...</div>';
 }
@@ -33,6 +14,11 @@ function showSampleWeather() {
 }
 
 async function getWeatherByCity(city) {
+    if (typeof API_KEY === 'undefined' || !API_KEY) {
+        showError('API Key is missing. Please check config.js');
+        return;
+    }
+
     try {
         showLoading();
 
@@ -53,6 +39,11 @@ async function getWeatherByCity(city) {
 }
 
 async function getWeatherByCoords(lat, lon) {
+    if (typeof API_KEY === 'undefined' || !API_KEY) {
+        showError('API Key is missing. Please check config.js');
+        return;
+    }
+
     try {
         showLoading();
 
@@ -93,12 +84,6 @@ function getCurrentLocation() {
                         break;
                 }
                 showError(errorMsg);
-<<<<<<< HEAD
-=======
-                setTimeout(() => {
-                    getWeatherByCity('London');
-                }, 2000);
->>>>>>> 7bafc08e93935bc394d8460e4b945e4dcd2407c2
             },
             {
                 enableHighAccuracy: true,
@@ -108,13 +93,6 @@ function getCurrentLocation() {
         );
     } else {
         showError('Browser does not support location services');
-<<<<<<< HEAD
-=======
-   
-        setTimeout(() => {
-            getWeatherByCity('London');
-        }, 2000);
->>>>>>> 7bafc08e93935bc394d8460e4b945e4dcd2407c2
     }
 }
 
@@ -132,18 +110,6 @@ function displayRealWeather(data) {
     const maxTemp = Math.round(today.day.maxtemp_c);
     const minTemp = Math.round(today.day.mintemp_c);
 
-<<<<<<< HEAD
-=======
-    const localTime = new Date(location.localtime);
-    const timeOptions = { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: true,
-        timeZone: location.tz_id
-    };
-    const localTimeString = localTime.toLocaleTimeString('en-US', timeOptions);
-    
->>>>>>> 7bafc08e93935bc394d8460e4b945e4dcd2407c2
     weatherContainer.innerHTML = `
         <div class="weather-card">
             <div class="current-weather">
@@ -215,18 +181,6 @@ function displayRealWeather(data) {
     `;
 }
 
-<<<<<<< HEAD
-=======
-function getUVLevel(uv) {
-    if (uv <= 2) return '(Low)';
-    if (uv <= 5) return '(Moderate)';
-    if (uv <= 7) return '(High)';
-    if (uv <= 10) return '(Very High)';
-    return '(Extreme)';
-}
-
-
->>>>>>> 7bafc08e93935bc394d8460e4b945e4dcd2407c2
 function searchWeather() {
     const city = document.getElementById('cityInput').value.trim();
     if (city) {
@@ -236,30 +190,6 @@ function searchWeather() {
     }
 }
 
-<<<<<<< HEAD
-=======
-function getCurrentLocation() {
-    if (navigator.geolocation) {
-        showLoading();
-        navigator.geolocation.getCurrentPosition(
-            position => {
-                getWeatherByCoords(position.coords.latitude, position.coords.longitude);
-            },
-            error => {
-                showError('Unable to get location data');
-                showSampleWeather('Your Current Location');
-            }
-        );
-    } else {
-        showError('Browser does not support location services');
-    }
-}
-
-function showSampleWeather(title = 'Welcome') {
-    weatherContainer.innerHTML = `<div class="loading">Welcome! Enter a city name or click the location button to see weather information.</div>`;
-}
-
->>>>>>> 7bafc08e93935bc394d8460e4b945e4dcd2407c2
 document.getElementById('cityInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         searchWeather();

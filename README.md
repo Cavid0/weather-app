@@ -2,7 +2,6 @@
 
 A modern and stylish web application providing real-time weather information with a sleek interface.
 
-![Weather App UI](https://via.placeholder.com/800x400?text=Weather+App+Preview)
 
 ## 🌟 Features
 
@@ -22,20 +21,30 @@ A modern and stylish web application providing real-time weather information wit
 
 ## 🚀 How to Run
 
-1.  Clone or download the repository:
+1.  Clone the repository:
     ```bash
-    git clone https://github.com/username/weather-app.git
+    git clone https://github.com/Cavid0/weather-app.git
     ```
 2.  Navigate to the directory:
     ```bash
-    cd weather
+    cd weather-app
     ```
-3.  Open the `weather.html` file in your favorite browser.
+3.  Open `weather.html` in your browser.
 
-## 📝 Notes
+## ⚙️ Configuration (API Key)
 
-*   This project utilizes **[WeatherAPI](https://www.weatherapi.com/)**. The API key is included in the `script.js` file.
-*   Your browser must support the **Geolocation API** for the "Current Location" feature to work.
+This project uses **[WeatherAPI](https://www.weatherapi.com/)**. You need your own API key to run it locally.
+
+1.  **Get a Key:** Sign up at [WeatherAPI.com](https://www.weatherapi.com/) (Free plan works).
+2.  **Setup Config:**
+    *   Rename `config.example.js` to `config.js`.
+    *   Open `config.js` and replace `"YOUR_API_KEY_HERE"` with your actual key.
+    ```javascript
+    const API_KEY = "your_actual_api_key_here";
+    ```
+    *(Note: `config.js` is ignored by Git to keep your key safe.)*
+
+3.  **Run:** Open `weather.html`.
 
 ## 👨‍💻 Author
 
